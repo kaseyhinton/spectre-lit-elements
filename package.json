@@ -2,6 +2,16 @@
   "name": "root",
   "private": true,
   "devDependencies": {
-    "lerna": "^3.18.3"
+    "lerna": "^3.18.3",
+    "storybook": "^1.0.0"
+  },
+  "scripts": {
+    "start": "npm run bootstrap && npm run build && run-p storybook build:watch",
+    "bootstrap": "lerna bootstrap --ci --hoist",
+    "build:watch": "lerna run build:watch --stream --parallel",
+    "build": "lerna run build --stream",
+    "lint": "lerna run lint --stream",
+    "storybook": "cd packages/storybook && npm run storybook",
+    "lerna:publish": "npm run bootstrap && npm run build && lerna publish --conventional-commits --yes"
   }
 }
